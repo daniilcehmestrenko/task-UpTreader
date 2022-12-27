@@ -1,0 +1,18 @@
+{% load mptt_tags %}
+{% load menu_tag %}
+
+{% draw_menu 'main_menu' as mainmenu %}
+
+<ul>
+    {% recursetree mainmenu %}
+        <li>
+            <a href="#">{{ node.name }}</a>
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+    {{menu}}
+</ul>
